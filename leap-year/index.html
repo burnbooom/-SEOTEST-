@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>When is the Next Leap Year? | Leap Year Dates</title>
+    <meta name="description" content="Find when the next leap year occurs. Upcoming leap years: 2028, 2032, 2036. Learn why we have leap years and the rules that determine them.">
+    <link rel="canonical" href="https://whenisthenext.com/leap-year/">
+    <link rel="stylesheet" href="../styles.css">
+    <meta property="og:title" content="When is the Next Leap Year? | Leap Year Dates">
+    <meta property="og:description" content="Find when the next leap year occurs. Upcoming leap years: 2028, 2032, 2036.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://whenisthenext.com/leap-year/">
+    <meta name="twitter:card" content="summary">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "When Is The Next Leap Year?",
+      "description": "Find when the next leap year occurs",
+      "url": "https://whenisthenext.com/leap-year/"
+    }
+    </script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <a href="../index.html" class="logo">When Is The Next<span class="question-mark">?</span></a>
+        </div>
+    </header>
+
+    <main>
+        <section class="event-hero">
+            <div class="container">
+                <span class="event-category">Calendar</span>
+                <h1>Leap Year</h1>
+                <p class="event-date-large"><strong>The next leap year is 2028</strong></p>
+                <div class="countdown-large" data-target="2028-01-01T00:00:00Z">
+                    <div class="countdown-block">
+                        <span class="countdown-number" data-unit="days">625</span>
+                        <span class="countdown-text">Days</span>
+                    </div>
+                    <div class="countdown-block">
+                        <span class="countdown-number" data-unit="hours">6</span>
+                        <span class="countdown-text">Hours</span>
+                    </div>
+                    <div class="countdown-block">
+                        <span class="countdown-number" data-unit="mins">12</span>
+                        <span class="countdown-text">Mins</span>
+                    </div>
+                    <div class="countdown-block">
+                        <span class="countdown-number" data-unit="secs">45</span>
+                        <span class="countdown-text">Secs</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="event-content">
+            <div class="container">
+                <div class="content-grid">
+                    <div class="main-content">
+                        <h2>Upcoming Leap Years</h2>
+                        <table class="history-table">
+                            <thead>
+                                <tr><th>Year</th><th>Date</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>2028</td><td>January 1, 2028</td></tr>
+                                <tr><td>2032</td><td>January 1, 2032</td></tr>
+                                <tr><td>2036</td><td>January 1, 2036</td></tr>
+                                <tr><td>2040</td><td>January 1, 2040</td></tr>
+                            </tbody>
+                        </table>
+
+                        <h2>Why Do We Have Leap Years?</h2>
+                        <p>A leap year adds an extra day to the calendar to keep it synchronized with Earth's orbit around the Sun. Without it, the calendar would drift about 1 day every 4 years, eventually shifting the seasons.</p>
+
+                        <h2>Leap Year Rules</h2>
+                        <p>A year is a leap year if:</p>
+                        <ul>
+                            <li>Divisible by 4, <strong>AND</strong></li>
+                            <li>NOT divisible by 100, <strong>UNLESS</strong></li>
+                            <li>Also divisible by 400</li>
+                        </ul>
+                        <p>For example, 1900 was not a leap year, but 2000 was.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script>
+    function updateCountdowns() {
+        const now = new Date().getTime();
+        document.querySelectorAll('.countdown, .countdown-large').forEach(container => {
+            const target = container.getAttribute('data-target');
+            if (!target) return;
+            const targetTime = new Date(target).getTime();
+            const diff = targetTime - now;
+            if (diff <= 0) {
+                container.innerHTML = '<p class="event-started">This event has passed</p>';
+                return;
+            }
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const secs = Math.floor((diff % (1000 * 60)) / 1000);
+            container.querySelectorAll('[data-unit="days"]').forEach(el => el.textContent = days);
+            container.querySelectorAll('[data-unit="hours"]').forEach(el => el.textContent = hours);
+            container.querySelectorAll('[data-unit="mins"]').forEach(el => el.textContent = mins);
+            container.querySelectorAll('[data-unit="secs"]').forEach(el => el.textContent = secs);
+        });
+    }
+    setInterval(updateCountdowns, 1000);
+    updateCountdowns();
+    </script>
+</body>
+</html>

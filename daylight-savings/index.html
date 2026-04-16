@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>When is the Next Daylight Savings Time? | DST Dates 2026</title>
+    <meta name="description" content="Find when daylight saving time begins and ends in 2026. Complete DST schedule for the U.S. and around the world.">
+    <link rel="canonical" href="https://whenisthenext.com/daylight-savings/">
+    <link rel="stylesheet" href="../styles.css">
+    <meta property="og:title" content="When is the Next Daylight Savings Time? | DST Dates">
+    <meta property="og:description" content="Find when daylight saving time begins and ends in 2026.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://whenisthenext.com/daylight-savings/">
+    <meta name="twitter:card" content="summary">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "When Is The Next Daylight Savings Time?",
+      "description": "Find daylight saving time dates",
+      "url": "https://whenisthenext.com/daylight-savings/"
+    }
+    </script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <a href="../index.html" class="logo">When Is The Next<span class="question-mark">?</span></a>
+        </div>
+    </header>
+
+    <main>
+        <section class="event-hero">
+            <div class="container">
+                <span class="event-category">Calendar</span>
+                <h1>Daylight Savings Time</h1>
+                <p class="event-date-large"><strong>DST ends November 1, 2026 (in the U.S.)</strong></p>
+                <div class="countdown-large" data-target="2026-11-01T02:00:00-04:00">
+                    <div class="countdown-block">
+                        <span class="countdown-number" data-unit="days">199</span>
+                        <span class="countdown-text">Days</span>
+                    </div>
+                    <div class="countdown-block">
+                        <span class="countdown-number" data-unit="hours">6</span>
+                        <span class="countdown-text">Hours</span>
+                    </div>
+                    <div class="countdown-block">
+                        <span class="countdown-number" data-unit="mins">12</span>
+                        <span class="countdown-text">Mins</span>
+                    </div>
+                    <div class="countdown-block">
+                        <span class="countdown-number" data-unit="secs">45</span>
+                        <span class="countdown-text">Secs</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="event-content">
+            <div class="container">
+                <div class="content-grid">
+                    <div class="main-content">
+                        <h2>U.S. DST Dates 2026</h2>
+                        <table class="history-table">
+                            <thead>
+                                <tr><th>Event</th><th>Date</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>DST Begins</td><td>March 8, 2026</td></tr>
+                                <tr><td>DST Ends</td><td>November 1, 2026</td></tr>
+                            </tbody>
+                        </table>
+
+                        <h2>What is Daylight Savings Time?</h2>
+                        <p>Daylight Saving Time (DST) is the practice of moving clocks forward one hour during warmer months so that evening daylight lasts longer. In the U.S., clocks spring forward in March and fall back in November.</p>
+
+                        <h2>DST by Region</h2>
+                        <p>Not all countries observe DST. The European Union follows a different schedule, typically beginning DST on the last Sunday in March and ending on the last Sunday in October.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script>
+    function updateCountdowns() {
+        const now = new Date().getTime();
+        document.querySelectorAll('.countdown, .countdown-large').forEach(container => {
+            const target = container.getAttribute('data-target');
+            if (!target) return;
+            const targetTime = new Date(target).getTime();
+            const diff = targetTime - now;
+            if (diff <= 0) {
+                container.innerHTML = '<p class="event-started">This event has passed</p>';
+                return;
+            }
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const secs = Math.floor((diff % (1000 * 60)) / 1000);
+            container.querySelectorAll('[data-unit="days"]').forEach(el => el.textContent = days);
+            container.querySelectorAll('[data-unit="hours"]').forEach(el => el.textContent = hours);
+            container.querySelectorAll('[data-unit="mins"]').forEach(el => el.textContent = mins);
+            container.querySelectorAll('[data-unit="secs"]').forEach(el => el.textContent = secs);
+        });
+    }
+    setInterval(updateCountdowns, 1000);
+    updateCountdowns();
+    </script>
+</body>
+</html>

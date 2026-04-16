@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>When is the Next Meteor Shower? | Dates 2026</title>
+    <meta name="description" content="Find the next meteor shower. Complete list of major meteor showers in 2026 including Perseids, Geminids, Lyrids, and Quadrantids with peak dates.">
+    <link rel="canonical" href="https://whenisthenext.com/meteor-shower/">
+    <link rel="stylesheet" href="../styles.css">
+    <meta property="og:title" content="When is the Next Meteor Shower? | Dates 2026">
+    <meta property="og:description" content="Find the next meteor shower. Complete list of major meteor showers in 2026.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://whenisthenext.com/meteor-shower/">
+    <meta name="twitter:card" content="summary">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "When Is The Next Meteor Shower?",
+      "description": "Find meteor shower dates and peak times",
+      "url": "https://whenisthenext.com/meteor-shower/"
+    }
+    </script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <a href="../index.html" class="logo">When Is The Next<span class="question-mark">?</span></a>
+        </div>
+    </header>
+
+    <main>
+        <section class="event-hero">
+            <div class="container">
+                <span class="event-category">Astronomy</span>
+                <h1>Meteor Shower</h1>
+                <p class="event-date-large"><strong>The next major meteor shower is the Lyrids, peaking April 22, 2026</strong></p>
+                <div class="countdown-large" data-target="2026-04-22T00:00:00Z">
+                    <div class="countdown-block">
+                        <span class="countdown-number" data-unit="days">5</span>
+                        <span class="countdown-text">Days</span>
+                    </div>
+                    <div class="countdown-block">
+                        <span class="countdown-number" data-unit="hours">6</span>
+                        <span class="countdown-text">Hours</span>
+                    </div>
+                    <div class="countdown-block">
+                        <span class="countdown-number" data-unit="mins">12</span>
+                        <span class="countdown-text">Mins</span>
+                    </div>
+                    <div class="countdown-block">
+                        <span class="countdown-number" data-unit="secs">45</span>
+                        <span class="countdown-text">Secs</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="event-content">
+            <div class="container">
+                <div class="content-grid">
+                    <div class="main-content">
+                        <h2>Major Meteor Showers 2026</h2>
+                        <table class="history-table">
+                            <thead>
+                                <tr><th>Name</th><th>Peak Date</th><th>Rate/hr</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Quadrantids</td><td>January 3, 2026</td><td>120+</td></tr>
+                                <tr><td>Lyrids</td><td>April 22, 2026</td><td>20</td></tr>
+                                <tr><td>Eta Aquariids</td><td>May 5, 2026</td><td>50</td></tr>
+                                <tr><td>Perseids</td><td>August 12, 2026</td><td>100</td></tr>
+                                <tr><td>Orionids</td><td>October 21, 2026</td><td>25</td></tr>
+                                <tr><td>Leonids</td><td>November 17, 2026</td><td>15</td></tr>
+                                <tr><td>Geminids</td><td>December 14, 2026</td><td>150</td></tr>
+                            </tbody>
+                        </table>
+
+                        <h2>What is a Meteor Shower?</h2>
+                        <p>A meteor shower occurs when Earth passes through debris trails left by comets. As the debris burns up in Earth's atmosphere, it creates streaks of light in the night sky.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script>
+    function updateCountdowns() {
+        const now = new Date().getTime();
+        document.querySelectorAll('.countdown, .countdown-large').forEach(container => {
+            const target = container.getAttribute('data-target');
+            if (!target) return;
+            const targetTime = new Date(target).getTime();
+            const diff = targetTime - now;
+            if (diff <= 0) {
+                container.innerHTML = '<p class="event-started">This event has passed</p>';
+                return;
+            }
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const secs = Math.floor((diff % (1000 * 60)) / 1000);
+            container.querySelectorAll('[data-unit="days"]').forEach(el => el.textContent = days);
+            container.querySelectorAll('[data-unit="hours"]').forEach(el => el.textContent = hours);
+            container.querySelectorAll('[data-unit="mins"]').forEach(el => el.textContent = mins);
+            container.querySelectorAll('[data-unit="secs"]').forEach(el => el.textContent = secs);
+        });
+    }
+    setInterval(updateCountdowns, 1000);
+    updateCountdowns();
+    </script>
+</body>
+</html>

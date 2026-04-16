@@ -9,6 +9,108 @@
     
     <link rel="stylesheet" href="styles.css">
     <meta property="og:title" content="When Is The Next...? | Major Event Countdown Dates">
+    <meta property="og:description" content="When is the next major event? Find confirmed dates for Steam Sales, Apple Events, F1 Grand Prix, Amazon Prime Day, Eclipses, and more.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://whenisthenext.com/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="When Is The Next...?">
+    <meta name="twitter:description" content="Find dates for major recurring events">
+    <link rel="alternate" hreflang="en" href="https://whenisthenext.com/">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "When Is The Next...?",
+      "description": "Find dates for major recurring events including full moon, new moon, leap year, solar eclipse, lunar eclipse, meteor showers, and more.",
+      "url": "https://whenisthenext.com/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://whenisthenext.com/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      },
+      "about": [
+        {"@type": "Thing", "name": "Full Moon", "url": "https://whenisthenext.com/full-moon/"},
+        {"@type": "Thing", "name": "New Moon", "url": "https://whenisthenext.com/new-moon/"},
+        {"@type": "Thing", "name": "Leap Year", "url": "https://whenisthenext.com/leap-year/"},
+        {"@type": "Thing", "name": "Solar Eclipse", "url": "https://whenisthenext.com/eclipse/"},
+        {"@type": "Thing", "name": "Lunar Eclipse", "url": "https://whenisthenext.com/lunar-eclipse/"},
+        {"@type": "Thing", "name": "Meteor Shower", "url": "https://whenisthenext.com/meteor-shower/"},
+        {"@type": "Thing", "name": "Daylight Savings", "url": "https://whenisthenext.com/daylight-savings/"},
+        {"@type": "Thing", "name": "Blue Moon", "url": "https://whenisthenext.com/blue-moon/"}
+      ]
+    }
+    </script>
+    <script>
+    const eventKeywords = {
+        'full moon': { page: 'full-moon/index.html', title: 'Full Moon', aliases: ['fullmoon', 'when is the next full moon', 'when was the last full moon', 'when is the full moon', 'next full moon', 'full moon for', 'when is the full moon for'] },
+        'new moon': { page: 'new-moon/index.html', title: 'New Moon', aliases: ['when is the next new moon', 'next new moon', 'when is next new moon'] },
+        'leap year': { page: 'leap-year/index.html', title: 'Leap Year', aliases: ['when is next leap year', 'next leap year', 'leapyear', 'when is the next leap year'] },
+        'solar eclipse': { page: 'eclipse/index.html', title: 'Solar Eclipse', aliases: ['when is the next solar eclipse', 'when is the next sun eclipse', 'when is the next total eclipse', 'when is the next full eclipse', 'when is the next total solar eclipse', 'when is the next full solar eclipse', 'next solar eclipse', 'eclipse', 'sun eclipse', 'total eclipse', 'when is the next eclipse'] },
+        'lunar eclipse': { page: 'lunar-eclipse/index.html', title: 'Lunar Eclipse', aliases: ['when is the next lunar eclipse', 'when is the next eclipse of the moon', 'when is the next full lunar eclipse', 'when is the next total lunar eclipse', 'next lunar eclipse', 'blood moon', 'red moon', 'when is the next blood moon', 'when is next red moon'] },
+        'daylight savings': { page: 'daylight-savings/index.html', title: 'Daylight Savings', aliases: ['daylight saving', 'daylights savings', 'dst', 'when is the next daylight savings time', 'when is the next daylight saving'] },
+        'meteor shower': { page: 'meteor-shower/index.html', title: 'Meteor Shower', aliases: ['when is the next meteor shower', 'next meteor shower'] },
+        'blue moon': { page: 'blue-moon/index.html', title: 'Blue Moon', aliases: ['when is next blue moon', 'next blue moon'] },
+        'planets align': { page: 'planets-align/index.html', title: 'Planets Align', aliases: ['when will all planets align', 'planetary alignment', 'planets alignment', 'will all planets align', 'planets alignment'] },
+        'strawberry moon': { page: 'strawberry-moon/index.html', title: 'Strawberry Moon', aliases: ['when is the strawberry moon', 'strawberry moon'] }
+    };
+    
+    function getUrlParam(name) {
+        const params = new URLSearchParams(window.location.search);
+        return params.get(name);
+    }
+    
+    function normalizeSearch(query) {
+        return query.toLowerCase().replace(/[^a-z0-9\s]/g, '').trim();
+    }
+    
+    function findEventPage(query) {
+        const normalized = normalizeSearch(query);
+        for (const [key, data] of Object.entries(eventKeywords)) {
+            if (normalized.includes(key) || data.aliases.some(a => normalized.includes(a.replace(/[^a-z0-9\s]/g, '')))) {
+                return data.page;
+            }
+        }
+        return null;
+    }
+    
+    function handleSearch() {
+        const query = getUrlParam('q') || getUrlParam('s') || getUrlParam('search_term_string') || '';
+        if (query) {
+            const page = findEventPage(query);
+            if (page) {
+                window.location.href = page + '?from=' + encodeURIComponent(query);
+                return;
+            }
+            displaySearchResults(query);
+        }
+    }
+    
+    function displaySearchResults(query) {
+        const grid = document.getElementById('events');
+        if (!grid) return;
+        const normalized = normalizeSearch(query);
+        const cards = grid.querySelectorAll('.event-card');
+        let found = false;
+        cards.forEach(card => {
+            const eventName = card.querySelector('h2').textContent.toLowerCase();
+            if (eventName.includes(normalized) || normalized.includes(eventName.split(' ')[0])) {
+                card.style.display = 'block';
+                found = true;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+        if (found) {
+            const heading = document.createElement('div');
+            heading.className = 'search-results-heading';
+            heading.innerHTML = '<h2>Search Results for "' + query + '"</h2>';
+            grid.insertBefore(heading, grid.firstChild);
+        }
+    }
+    
+    document.addEventListener('DOMContentLoaded', handleSearch);
+    </script>
+    <meta property="og:title" content="When Is The Next...? | Major Event Countdown Dates">
     <meta property="og:description" content="Find confirmed dates for Steam Sales, Apple Events, F1 Grand Prix, Amazon Prime Day, and Solar Eclipses.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://whenisthenext.com/">
@@ -2522,9 +2624,42 @@
                     return;
                 }
             }
-            document.getElementById('search-input').value = '';
-            alert('Event not found. Try searching for Steam, Apple, F1, Prime Day, or Eclipse.');
+            const page = findEventPage(query);
+            if (page) {
+                window.location.href = page;
+                return;
+            }
+            displaySearchResults(query);
         });
+    </script>
+    <script>
+    function updateCountdowns() {
+        const now = new Date().getTime();
+        document.querySelectorAll('.countdown, .countdown-large').forEach(container => {
+            const target = container.getAttribute('data-target');
+            if (!target) return;
+            const targetTime = new Date(target).getTime();
+            const diff = targetTime - now;
+            
+            if (diff <= 0) {
+                container.innerHTML = '<p class="event-started">This event has passed</p>';
+                return;
+            }
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const secs = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            container.querySelectorAll('[data-unit="days"]').forEach(el => el.textContent = days);
+            container.querySelectorAll('[data-unit="hours"]').forEach(el => el.textContent = hours);
+            container.querySelectorAll('[data-unit="mins"]').forEach(el => el.textContent = mins);
+            container.querySelectorAll('[data-unit="secs"]').forEach(el => el.textContent = secs);
+        });
+    }
+    
+    setInterval(updateCountdowns, 1000);
+    updateCountdowns();
     </script>
 </body>
 </html>

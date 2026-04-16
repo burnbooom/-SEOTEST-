@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>When Will All Planets Align? | Planetary Alignment Dates</title>
+    <meta name="description" content="Find when planets will align in the night sky. Upcoming planetary alignments and conjunctions visible from Earth.">
+    <link rel="canonical" href="https://whenisthenext.com/planets-align/">
+    <link rel="stylesheet" href="../styles.css">
+    <meta property="og:title" content="When Will All Planets Align? | Planetary Alignment">
+    <meta property="og:description" content="Find when planets will align in the night sky.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://whenisthenext.com/planets-align/">
+    <meta name="twitter:card" content="summary">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "When Will All Planets Align?",
+      "description": "Find planetary alignment dates",
+      "url": "https://whenisthenext.com/planets-align/"
+    }
+    </script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <a href="../index.html" class="logo">When Is The Next<span class="question-mark">?</span></a>
+        </div>
+    </header>
+
+    <main>
+        <section class="event-hero">
+            <div class="container">
+                <span class="event-category">Astronomy</span>
+                <h1>Planetary Alignment</h1>
+                <p class="event-date-large"><strong>Next planetary alignment: June 29, 2026</strong></p>
+                <div class="countdown-large" data-target="2026-06-29T00:00:00Z">
+                    <div class="countdown-block">
+                        <span class="countdown-number" data-unit="days">73</span>
+                        <span class="countdown-text">Days</span>
+                    </div>
+                    <div class="countdown-block">
+                        <span class="countdown-number" data-unit="hours">6</span>
+                        <span class="countdown-text">Hours</span>
+                    </div>
+                    <div class="countdown-block">
+                        <span class="countdown-number" data-unit="mins">12</span>
+                        <span class="countdown-text">Mins</span>
+                    </div>
+                    <div class="countdown-block">
+                        <span class="countdown-number" data-unit="secs">45</span>
+                        <span class="countdown-text">Secs</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="event-content">
+            <div class="container">
+                <div class="content-grid">
+                    <div class="main-content">
+                        <h2>What is a Planetary Alignment?</h2>
+                        <p>A planetary alignment occurs when multiple planets appear close together in the sky from Earth's perspective. True alignments (all planets in a line) are extremely rare, but close groupings happen periodically.</p>
+
+                        <h2>Upcoming Alignments 2026</h2>
+                        <table class="history-table">
+                            <thead>
+                                <tr><th>Date</th><th>Planets</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>June 29, 2026</td><td>Mercury, Venus, Mars, Jupiter, Saturn</td></tr>
+                                <tr><td>August 10, 2026</td><td>Venus, Jupiter, Saturn, Uranus</td></tr>
+                            </tbody>
+                        </table>
+
+                        <h2>Will All 8 Planets Align?</h2>
+                        <p>All eight planets align roughly every 500+ years. The last time was in 1962. The next approximate alignment will be around 2492.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script>
+    function updateCountdowns() {
+        const now = new Date().getTime();
+        document.querySelectorAll('.countdown, .countdown-large').forEach(container => {
+            const target = container.getAttribute('data-target');
+            if (!target) return;
+            const targetTime = new Date(target).getTime();
+            const diff = targetTime - now;
+            if (diff <= 0) {
+                container.innerHTML = '<p class="event-started">This event has passed</p>';
+                return;
+            }
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const secs = Math.floor((diff % (1000 * 60)) / 1000);
+            container.querySelectorAll('[data-unit="days"]').forEach(el => el.textContent = days);
+            container.querySelectorAll('[data-unit="hours"]').forEach(el => el.textContent = hours);
+            container.querySelectorAll('[data-unit="mins"]').forEach(el => el.textContent = mins);
+            container.querySelectorAll('[data-unit="secs"]').forEach(el => el.textContent = secs);
+        });
+    }
+    setInterval(updateCountdowns, 1000);
+    updateCountdowns();
+    </script>
+</body>
+</html>
