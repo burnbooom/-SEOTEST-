@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://whenisthenext.com/sitemap.xml
+Sitemap: https://when-is-the-next.onrender.com/sitemap.xml
