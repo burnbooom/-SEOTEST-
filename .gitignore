@@ -1,0 +1,7 @@
+# Ignore the 10k generated event pages (too large for git)
+/events/
+/events-accurate/
+*.log
+.DS_Store
+node_modules/
+.env

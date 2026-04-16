@@ -1,0 +1,144 @@
+#!/usr/bin/env python3
+import json
+import os
+from datetime import datetime
+
+def generate_real_pages():
+    with open('real-events.json', 'r') as f:
+        events = json.load(f)
+
+    template = '''<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{meta_description}">
+    <title>{title}</title>
+    <link rel="canonical" href="{canonical_url}">
+    <link rel="stylesheet" href="../styles.css">
+    <script type="application/ld+json">
+    {{
+      "@context": "https://schema.org",
+      "@type": "SportsEvent",
+      "name": "{event_name}",
+      "description": "{description}",
+      "startDate": "{date}",
+      "location": {{
+        "@type": "Place",
+        "name": "{location_name}",
+        "address": "{location_address}"
+      }}
+    }}
+    </script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <a href="../index.html" class="logo">When Is The Next<span class="question-mark">?</span></a>
+            <nav class="main-nav">
+                <a href="../index.html">Home</a>
+                <a href="../f1/index.html">F1</a>
+                <a href="../steam/index.html">Steam</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>{hero_title}</h1>
+                <p class="hero-subtitle">{hero_subtitle}</p>
+            </div>
+        </section>
+
+        <div class="countdown-container">
+            <div class="container">
+                <div class="event-card" data-event="{slug}">
+                    <div class="event-badge badge-{category}">{category_display}</div>
+                    <div class="event-date-badge">Confirmed</div>
+                    <h2>{event_name}</h2>
+                    <p class="event-answer"><strong>{event_answer}</strong></p>
+                    <div class="countdown" data-target="{target_date}T10:00:00">
+                        <div class="countdown-item">
+                            <span class="countdown-value" data-unit="days">{days}</span>
+                            <span class="countdown-label">Days</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-value" data-unit="hours">{hours}</span>
+                            <span class="countdown-label">Hours</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-value" data-unit="mins">{minutes}</span>
+                            <span class="countdown-label">Mins</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-value" data-unit="secs">{seconds}</span>
+                            <span class="countdown-label">Secs</span>
+                        </div>
+                    </div>
+                    <p class="event-excerpt">{description}</p>
+                    <a href="../index.html" class="btn">← Back to All Events</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 When Is The Next? - All event dates are confirmed.</p>
+        </div>
+    </footer>
+
+    <script src="../countdown.js"></script>
+</body>
+</html>'''
+
+    now = datetime(2026, 4, 16)
+
+    category_display_names = {
+        "sports": "Sports",
+        "gaming": "Gaming",
+        "tech": "Tech",
+        "shopping": "Shopping",
+        "holiday": "Holiday",
+        "music": "Music",
+        "entertainment": "Entertainment"
+    }
+
+    for event in events:
+        event_date = datetime.strptime(event["date"], "%Y-%m-%d")
+        delta = event_date - now
+        days = max(0, delta.days)
+        hours = 10
+        minutes = 0
+        seconds = 0
+
+        category_display = category_display_names.get(event["category"], event["category"].title())
+
+        html = template.replace("{meta_description}", f"When is the next {event['name']}? The event is on {event['date']} in {event['location']}. Get countdown and schedule.")
+        html = html.replace("{title}", f"When is the next {event['name']}? | {event['date']}")
+        html = html.replace("{canonical_url}", f"https://whenisthenext.com/{event['slug']}/index.html")
+        html = html.replace("{event_name}", event["name"])
+        html = html.replace("{description}", event["description"])
+        html = html.replace("{location_name}", event["location"])
+        html = html.replace("{location_address}", event["location"])
+        html = html.replace("{hero_title}", event["name"])
+        html = html.replace("{hero_subtitle}", f"Countdown to {event['name']} in {event['location']}")
+        html = html.replace("{slug}", event["slug"])
+        html = html.replace("{category}", event["category"])
+        html = html.replace("{category_display}", category_display)
+        html = html.replace("{event_answer}", f"The next {event['name']} is scheduled for {event['date']} in {event['location']}.")
+        html = html.replace("{target_date}", event["date"])
+        html = html.replace("{days}", str(days))
+        html = html.replace("{hours}", str(hours))
+        html = html.replace("{minutes}", str(minutes))
+        html = html.replace("{seconds}", str(seconds))
+
+        os.makedirs(f"real-events/{event['slug']}", exist_ok=True)
+        with open(f"real-events/{event['slug']}/index.html", 'w') as f:
+            f.write(html)
+
+    print(f"Generated {len(events)} pages with real event data!")
+
+if __name__ == "__main__":
+    generate_real_pages()
